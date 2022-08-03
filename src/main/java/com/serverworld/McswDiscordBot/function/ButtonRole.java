@@ -1,8 +1,8 @@
 package com.serverworld.McswDiscordBot.function;
 
 import com.serverworld.McswDiscordBot.lib.Emote;
-import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Emoji;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -25,7 +25,7 @@ public class ButtonRole extends ListenerAdapter {
 
     private static List<Button> sendButtons(){
         List<Button> buttons = new ArrayList<>();
-        buttons.add(Button.secondary("ProjectZomboid","Project Zomboid").withEmoji(Emoji.fromMarkdown(Emote.PZ)));
+        buttons.add(Button.secondary("ProjectZomboid","Project Zomboid").withEmoji(Emoji.fromMarkdown(Emote.pz_logo)));
         return buttons;
     }
 
@@ -36,11 +36,19 @@ public class ButtonRole extends ListenerAdapter {
             default:break;
             case "ProjectZomboid":{
                 //event.getChannel().sendMessage("Button1 clicked!").queue();
-                Role test = event.getGuild().getRoleById((938744047286239302L));
+                Role mcsw_host_service = event.getGuild().getRoleById((938744047286239302L));
                 //event.getChannel().sendMessage("Button1 clicked!").queue();
-                event.getMember().getGuild().addRoleToMember(event.getMember(),test).queue();
+                if(hasRole(event.getMember(),mcsw_host_service))
+                    event.getMember().getGuild().removeRoleFromMember(event.getMember(), mcsw_host_service).queue();
+                else
+                    event.getMember().getGuild().addRoleToMember(event.getMember(), mcsw_host_service).queue();
                 break;
             }
         }
+    }
+
+    public static boolean hasRole(Member member, Role role) {
+        List<Role> memberRoles = member.getRoles();
+        return memberRoles.contains(role);
     }
 }
