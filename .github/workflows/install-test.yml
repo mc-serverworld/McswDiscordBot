@@ -39,7 +39,7 @@ jobs:
           clean: false
 
       - name: Set up openJDK 17 win64
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3.4.1
         with:
           java-version: "17"
           distribution: 'jdkfile'
@@ -63,7 +63,7 @@ jobs:
           clean: false
 
       - name: Set up openJDK 18 win64
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3.4.1
         with:
           java-version: "18"
           distribution: 'jdkfile'
@@ -87,7 +87,7 @@ jobs:
           clean: false
 
       - name: Set up openJDK 18 win64
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3.4.1
         with:
           java-version: "18"
           distribution: 'jdkfile'
