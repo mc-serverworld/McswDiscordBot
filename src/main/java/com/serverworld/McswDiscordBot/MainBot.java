@@ -1,17 +1,20 @@
 package com.serverworld.McswDiscordBot;
 
 import com.serverworld.McswDiscordBot.function.ButtonRole;
-import com.serverworld.McswDiscordBot.lib.utils;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class MainBot {
     public static JDABuilder botBuilder_Main = null;
     public static JDA bot_Main= null;
+
+    /**
+     * Initialization bot
+     * @param token Token of discord bot
+     * */
     public static boolean initialization_Main(String token){
         try {
             botBuilder_Main = JDABuilder.createDefault(token);
