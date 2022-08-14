@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 jobs:
   openJDK_17:
-    runs-on: [ MISF-SERVER-1-GithubRunner-1 ]
+    runs-on: [ hyper ]
     steps:
       - name: Base setup
         uses: actions/checkout@v2
