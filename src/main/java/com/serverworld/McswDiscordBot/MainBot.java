@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class MainBot {
     public static JDABuilder botBuilder_Main = null;
@@ -15,7 +16,7 @@ public class MainBot {
         try {
             botBuilder_Main = JDABuilder.createDefault(token);
             botBuilder_Main.setActivity(Activity.playing("Hello discord!"));
-
+            botBuilder_Main.enableIntents(GatewayIntent.MESSAGE_CONTENT);
 
             botBuilder_Main.addEventListeners(new ButtonRole());
             bot_Main = botBuilder_Main.build();

@@ -1,9 +1,9 @@
 package com.serverworld.McswDiscordBot.function;
 
 import com.serverworld.McswDiscordBot.lib.Emote;
-import net.dv8tion.jda.api.entities.Emoji;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -25,7 +25,7 @@ public class ButtonRole extends ListenerAdapter {
 
     private static List<Button> sendButtons(){
         List<Button> buttons = new ArrayList<>();
-        buttons.add(Button.secondary("ProjectZomboid","Project Zomboid").withEmoji(Emoji.fromMarkdown(Emote.pz_logo)));
+        buttons.add(Button.secondary("ProjectZomboid","Project Zomboid").withEmoji(Emoji.fromFormatted((Emote.Logo_ProjectZomboid))));
         return buttons;
     }
 
