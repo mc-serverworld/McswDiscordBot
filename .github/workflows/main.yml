@@ -6,7 +6,7 @@ on:
   push:
     branches: [ main ]
 jobs:
-  openJDK_17:
+  openJDK_17_Deploy:
     runs-on: [ hyper ]
     steps:
       - name: Base setup
@@ -30,7 +30,31 @@ jobs:
         run: |
           mvn deploy -T9000 -DskipTests
 
-  openJDK_18:
+  openJDK_17_Test:
+    runs-on: [ hyper ]
+    steps:
+      - name: Base setup
+        uses: actions/checkout@v2
+        with:
+          clean: false
+
+      - name: Set up openJDK 17 win64
+        uses: actions/setup-java@v2
+        with:
+          java-version: "17"
+          distribution: 'jdkfile'
+          jdkFile: "I:/libs/java/jdk-17.0.2/openjdk-17.0.2_windows-x64_bin.zip"
+
+      - name: maven-settings-xml-action
+        uses: whelk-io/maven-settings-xml-action@v18
+        with:
+          servers: '[{ "id": "releases", "username": "${{ secrets.NEXUS_USERNAME}}", "password": "${{ secrets.NEXUS_PASSWORD}}" }, { "id": "snapshots", "username": "${{ secrets.NEXUS_USERNAME}}", "password": "${{ secrets.NEXUS_PASSWORD}}" }]'
+
+      - name: Maven test
+        run: |
+          mvn install -T9000
+
+  openJDK_18_Test:
     runs-on: [ hyper ]
     steps:
       - name: Base setup
@@ -50,6 +74,6 @@ jobs:
         with:
           servers: '[{ "id": "releases", "username": "${{ secrets.NEXUS_USERNAME}}", "password": "${{ secrets.NEXUS_PASSWORD}}" }, { "id": "snapshots", "username": "${{ secrets.NEXUS_USERNAME}}", "password": "${{ secrets.NEXUS_PASSWORD}}" }]'
 
-      - name: Maven deploy
+      - name: Maven test
         run: |
-          mvn install -T9000 -DskipTests
+          mvn install -T9000
