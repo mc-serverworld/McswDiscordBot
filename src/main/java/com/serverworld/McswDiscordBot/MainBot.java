@@ -18,7 +18,9 @@
 
 package com.serverworld.McswDiscordBot;
 
+import com.serverworld.McswDiscordBot.function.BingChilling;
 import com.serverworld.McswDiscordBot.function.ButtonRole;
+import com.serverworld.McswDiscordBot.function.HelloWorld;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -39,6 +41,9 @@ public class MainBot {
             botBuilder_Main.setActivity(Activity.playing("Hello discord!"));
             botBuilder_Main.enableIntents(GatewayIntent.MESSAGE_CONTENT);
 
+            botBuilder_Main.addEventListeners(new HelloWorld());
+
+            botBuilder_Main.addEventListeners(new BingChilling());
             botBuilder_Main.addEventListeners(new ButtonRole());
             bot_Main = botBuilder_Main.build();
 
