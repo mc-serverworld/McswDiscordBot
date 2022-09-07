@@ -1,5 +1,5 @@
 /*
- * < ProjectZomboidServerMannger - Project Zomboid server manage software >
+ * <McswDiscordBot - bot for mc-serverworld discord server>
  *     Copyright (C) 2022-2022 chiliasmstudio
  *
  *     This program is free software: you can redistribute it and/or modify
