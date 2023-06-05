@@ -49,6 +49,7 @@ public class ButtonRole extends ListenerAdapter {
     private static List<Button> sendButtons(){
         List<Button> buttons = new ArrayList<>();
         buttons.add(Button.secondary("ProjectZomboid","Project Zomboid").withEmoji(Emoji.fromFormatted((Emote.Logo_ProjectZomboid))));
+        buttons.add(Button.secondary("Phoenix","Phoenix (Minecraft)").withEmoji(Emoji.fromFormatted((Emote.Logo_Phoenix))));
         return buttons;
     }
 
@@ -67,6 +68,14 @@ public class ButtonRole extends ListenerAdapter {
                     event.getMember().getGuild().removeRoleFromMember(event.getMember(), mcsw_host_service).queue();
                 else
                     event.getMember().getGuild().addRoleToMember(event.getMember(), mcsw_host_service).queue();
+                break;
+            }
+            case "Phoenix":{
+                Role role = event.getGuild().getRoleById((938744113979871274L));
+                if(hasRole(event.getMember(),role))
+                    event.getMember().getGuild().removeRoleFromMember(event.getMember(), role).queue();
+                else
+                    event.getMember().getGuild().addRoleToMember(event.getMember(), role).queue();
                 break;
             }
         }
