@@ -19,13 +19,14 @@
 package com.serverworld.McswDiscordBot.function;
 
 import com.serverworld.McswDiscordBot.lib.Emote;
+import net.dv8tion.jda.api.components.actionrow.ActionRow;
+import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -38,7 +39,9 @@ public class ButtonRole extends ListenerAdapter {
         Role admin = event.getGuild().getRoleById((938744328774361118L));
         if (event.getMessage().getContentStripped().equalsIgnoreCase("!Callrole")&&hasRole(event.getMember(),admin)&&!event.getMember().getUser().isBot()){
             event.getChannel().sendMessage( "Hello world!\nClick the button to get role\n點擊按鈕即可獲取身分組").
-                    setActionRow(sendButtons()).
+                    setComponents(
+                            ActionRow.of(sendButtons())
+                    ).
                     queue();
         }
     }
@@ -59,7 +62,7 @@ public class ButtonRole extends ListenerAdapter {
     public void onButtonInteraction (ButtonInteractionEvent event) {
         event.deferEdit().queue();
 
-        switch (Objects.requireNonNull(event.getButton().getId())) {
+        switch (Objects.requireNonNull(event.getButton().getCustomId())) {
             default:break;
             case "ProjectZomboid":{
                 //event.getChannel().sendMessage("Button1 clicked!").queue();
